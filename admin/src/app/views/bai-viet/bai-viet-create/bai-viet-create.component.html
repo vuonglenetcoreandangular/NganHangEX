@@ -1,0 +1,47 @@
+<!-- <ckeditor [editor]="Editor" data="" (ready)="onReady($event)"></ckeditor> -->
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <span>Tên bài viết</span>
+            <input type="text" class="form-control" (keyup)="nhapTenBaiViet($event)" [(ngModel)]="baiViet.Ten">
+            <span>Tên alias</span>
+            <input type="text" class="form-control" [(ngModel)]="baiViet.Alias" disabled>
+            <span>Chọn danh mục</span>
+            <select class="form-control" aria-label="Default select example"
+                (change)="chonDanhMuc($event.target.value)">
+                <option value="0" selected>Chọn danh mục</option>
+                <option *ngFor="let item of danhMuc" value="{{item.Id}}">{{item.Ten}}</option>
+            </select>
+
+            Thứ tự hiển thị
+            <input type="number" class="form-control" [(ngModel)]="baiViet.ThuTuHienThi">
+            <span>Hiển thị</span>
+            <input type="checkbox" class="btn btn-default" [(ngModel)]="baiViet.HienThi">
+        </div>
+        <div class="col-md-6">
+            <img [src]="hienThiHinhAnh" height="200">
+            <input id="defalt-top" [ngClass]="{'btn-file' : !hienThiHinhAnh}" type='file'
+                (change)="onSelectFile($event)">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 ck-noi-dung-ngan">
+            <ckeditor [(ngModel)]="baiViet.NoiDungNgan" [editor]="Editor" data="t"></ckeditor>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <ckeditor [(ngModel)]="baiViet.NoiDung" [editor]="Editor" data="t"></ckeditor>
+        </div>
+    </div>
+    <div class="row footer">
+        <div class="col-md-11"></div>
+        <div class="col-md-1">
+            <button (click)="save()" class="btn btn-primary">Lưu</button>
+        </div>
+    </div>
+</div>
+
+
+

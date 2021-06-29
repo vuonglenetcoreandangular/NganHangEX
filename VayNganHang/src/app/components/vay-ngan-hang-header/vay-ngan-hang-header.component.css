@@ -1,0 +1,25 @@
+.header-main{
+    border: 1px solid #ddd;
+    padding: 0;
+}
+.header-app{
+    padding: 0;
+}
+ul > li > a{
+    color: #444444;
+    line-height: 52px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    padding:  0 !important;
+    margin: 0;
+    margin-right: 1px !important;
+}
+
+ul > li > a:hover{
+    color: aquamarine !important;
+}
+.avatar-img{
+    width: 40px;
+    border-radius: 50%;
+}

@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.7" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.6" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\VAYTIENNHANH.Data\VAYTIENNHANH.Data.csproj" />
+    <ProjectReference Include="..\VAYTIENNHANH.Model\VAYTIENNHANH.Model.csproj" />
+    <ProjectReference Include="..\VAYTIENNHANH.Service\VAYTIENNHANH.Service.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Areas\Portal\Data\" />
+    <Folder Include="Areas\Portal\Models\" />
+    <Folder Include="wwwroot\baiviet\" />
+  </ItemGroup>
+
+</Project>
