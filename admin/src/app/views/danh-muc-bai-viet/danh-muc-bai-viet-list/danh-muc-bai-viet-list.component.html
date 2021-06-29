@@ -1,0 +1,35 @@
+<div class="container">
+    <div class="row header">
+        <div class="col-md-10">
+
+        </div>
+        <div class="col-md-2">
+            <button class="btn btn-primary" (click)="themDanhMuc()">Thêm</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-border">
+                <tr>
+                    <th width="10px">ID</th>
+                    <th>Tên danh mục</th>
+                    <th>Logo</th>
+                    <th>Ngày tạo</th>
+                    <th></th>
+                </tr>
+                <tr *ngFor="let item of danhMucBaiViets">
+                    <td><a [routerLink]="['/danh-muc-bai-viet/them',item.Id]">{{item.Id}}</a></td>
+                    <td><b><a [routerLink]="['/danh-muc-bai-viet/chinh-sua',item.Id]">{{item.Ten}}</a></b></td>
+                    <td>{{item.Logo}}</td>
+                    <td>{{item.CreatedOn}}</td>
+                    <td>
+                        <div>
+                            <button (click)="delete(item.Id)" class="btn"><i class="fa fa-trash"></i></button>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+</div>
