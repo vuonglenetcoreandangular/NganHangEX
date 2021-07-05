@@ -13,6 +13,11 @@ import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-logi
 import { GoogleLoginProvider, FacebookLoginProvider } from 'angularx-social-login';
 import { TestLoginComponent } from './components/test-login/test-login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatButtonModule } from "@angular/material/button";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CommonModule } from '@angular/common';
+import { LoginPopupComponent } from './components/vay-ngan-hang-header/login-popup/login-popup.component';
 
 @NgModule({
   declarations: [
@@ -22,15 +27,20 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     VayNganHangFooterComponent,
     TrangChuComponent,
     DanhMucDetailComponent,
-    TestLoginComponent
+    TestLoginComponent,
+    LoginPopupComponent
   ],
   imports: [
+    CommonModule,
     BrowserModule,
-    FormsModule,
-    AppRoutingModule,
+    FormsModule,    
     ReactiveFormsModule,
+    AppRoutingModule,
     HttpClientModule,
-    SocialLoginModule
+    SocialLoginModule,
+    MatDialogModule,
+    MatButtonModule,
+    BrowserAnimationsModule
   ],
   providers: [
     {

@@ -23,3 +23,6 @@ ul > li > a:hover{
     width: 40px;
     border-radius: 50%;
 }
+.header-right{
+    padding-right: 200px;
+}

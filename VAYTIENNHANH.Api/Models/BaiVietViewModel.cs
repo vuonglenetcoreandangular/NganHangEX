@@ -2,7 +2,6 @@
 {
     public class BaiVietViewModel : BaseViewModel
     {
-        //str
         public string Ten { get; set; }
         public string Alias { get; set; }
         public string HinhAnhBase64 { get; set; }

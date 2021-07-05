@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-// import { MatDialog } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { FacebookLoginProvider, GoogleLoginProvider, SocialAuthService, SocialUser } from 'angularx-social-login';
 import { ApiService } from 'src/app/services/api.service';
@@ -16,7 +16,8 @@ export class VayNganHangHeaderComponent implements OnInit {
   user: SocialUser;
   loggedIn: boolean;
   invalidLogin: boolean;
-  constructor(private apiService: ApiService, private router: Router, private authService: SocialAuthService) { }
+  // ngForm: any;
+  constructor(private dialog: MatDialog, private apiService: ApiService, private router: Router, private authService: SocialAuthService) { }
 
   ngOnInit(): void {
     this.getDanhMucMenu();
@@ -70,37 +71,21 @@ export class VayNganHangHeaderComponent implements OnInit {
     this.authService.refreshAuthToken(GoogleLoginProvider.PROVIDER_ID);
   }
 
+  dangNhap() {
+    this.dialog.open(LoginPopupComponent, {
+      disableClose: false,
+      width: "800px",
+      data: {
+        Title: "Xác nhận",
+        Message: "view-order"
+      },
+    }).afterClosed(
 
-  login(form: NgForm) {
-    const credentials = {
-      'username': form.value.username,
-      'password': form.value.password
-    }
+    ).subscribe((result) => {
+      if (result == "Yes") {
 
-    this.apiService.post(`DocGia/Login`, credentials).toPromise().then((data: any) => {
-      console.log(data);
-      const token = (<string>data.tokenString);
-      //localStorage.setItem("jwt",token);
-
-      localStorage.setItem("jwt", data.tokenString);
+      }
     });
   }
-
-  // dangNhap() {
-  //   this.dialog.open(LoginPopupComponent, {
-  //     disableClose: false,
-  //     width: "800px",
-  //     data: {
-  //       Title: "Xác nhận",
-  //       Message: "view-order"
-  //     },
-  //   }).afterClosed(
-
-  //   ).subscribe((result) => {
-  //     if (result == "Yes") {
-
-  //     }
-  //   });
-  // }
 
 }

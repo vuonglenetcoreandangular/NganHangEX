@@ -62,7 +62,8 @@ namespace VAYTIENNHANH.Api.Controllers
                 return Ok(new { tokenString = tokenString });
             }
 
-            return Unauthorized();
+            //return Unauthorized();
+            return BadRequest();
         }
 
 
