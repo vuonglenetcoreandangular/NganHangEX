@@ -32,15 +32,24 @@ namespace VAYTIENNHANH.Service.Services.BaiViets
 
         public async Task<BaiVietDetailPortal> GetBaiVietDetail(long baiVietId)
         {
-            var data = _repository.TableNoTracking.FirstOrDefault(x => x.Id == baiVietId);
-            var result = new BaiVietDetailPortal();
-            result.Id = data.Id;
-            result.TenBaiViet = data.Ten;
-            result.NoiDung = data.NoiDung;
-            result.HinhAnhUrl = data.HinhAnh;
-            result.LuotXem = data.LuotXem;
-            result.NgayTao = data.CreatedOn;
-            return result;
+            var data = _repository.TableNoTracking.Include(s => s.NhanVat).ThenInclude(s => s.DiemNhanVats).Select(s => new BaiVietDetailPortal
+            {
+                Id = s.Id,
+                TenBaiViet = s.Ten,
+                NoiDung = s.NoiDung,
+                HienThiAnh = s.HienThiAnh.GetValueOrDefault(),
+                HinhAnhUrl = s.HinhAnh,
+                LuotXem = s.LuotXem,
+                NgayTao = s.CreatedOn,
+                NhanVatId = s.NhanVatId != null ? s.NhanVatId : 0,
+                TenNhanVat = s.NhanVatId != null ? s.NhanVat.Ten : "",
+                HinhAnhUrlNV = s.NhanVatId != null ? s.NhanVat.HinhAnh : "",
+                DiemTanBao = s.NhanVatId != null ? s.NhanVat.DiemNhanVats.Average(x => x.DiemNguyHiem) : 0,
+                DiemNguyHiem = s.NhanVatId != null ? s.NhanVat.DiemNhanVats.Average(x => x.DiemTanBao) : 0,
+                DiemBeNgoai = s.NhanVatId != null ? s.NhanVat.DiemNhanVats.Average(x => x.DiemBeNgoai) : 0
+            }).FirstOrDefault(x => x.Id == baiVietId);
+
+            return data;
         }
 
         public async Task<List<CauHinhHienThiBaiVIetVo>> GetBaiVietHienThi(long danhMucId, int viTriBaiViet)

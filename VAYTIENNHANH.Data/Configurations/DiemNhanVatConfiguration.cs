@@ -4,11 +4,11 @@ using VAYTIENNHANH.Model.Entities;
 
 namespace VAYTIENNHANH.Data.Configurations
 {
-    public class DanhGiaToiPhamConfiguration : IEntityTypeConfiguration<DanhGiaToiPham>
+    public class DiemNhanVatConfiguration : IEntityTypeConfiguration<DiemNhanVat>
     {
-        public void Configure(EntityTypeBuilder<DanhGiaToiPham> builder)
+        public void Configure(EntityTypeBuilder<DiemNhanVat> builder)
         {
-            builder.ToTable("DanhGiaToiPham");
+            builder.ToTable("DiemNhanVat");
             builder.HasKey(x => x.Id);
         }
     }

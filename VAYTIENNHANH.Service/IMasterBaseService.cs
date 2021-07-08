@@ -20,7 +20,7 @@ namespace VAYTIENNHANH.Service
         public void Delete(T obj);
 
         public void Create(T obj);
-        public void UpImageFromBase64ToJpg(string base64String, string imgName);
+        public void UpImageFromBase64ToJpg(string folder, string base64String, string imgName);
         public System.Drawing.Bitmap Base64StringToBitmap(string base64String);
     }
 }

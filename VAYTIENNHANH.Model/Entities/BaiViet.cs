@@ -12,8 +12,10 @@ namespace VAYTIENNHANH.Model.Entities
         public int? LuotXemAo { get; set; }
         public int? LuotXem { get; set; }
         public bool? HienThi { get; set; }
+        public bool? HienThiAnh { get; set; }
         public int ThuTuHienThi { get; set; }
         public long DanhMucId { get; set; }
+        public long? NhanVatId { get; set; }
         public bool? Deleted { get; set; }
         public virtual DanhMucBaiViet DanhMucBaiViet { get; set; }
       
@@ -32,5 +34,7 @@ namespace VAYTIENNHANH.Model.Entities
                    (_baiVietHinhAnh = new List<BaiVietHinhAnh>());
             protected set => _baiVietHinhAnh = value;
         }
+
+        public virtual NhanVat NhanVat { get; set; }
     }
 }

@@ -3,10 +3,9 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6">
-            <span>Tên bài viết</span>
+            <span style="margin-right: 10px;">Tên bài viết</span> {{baiViet.Alias}}
             <input type="text" class="form-control" (keyup)="nhapTenBaiViet($event)" [(ngModel)]="baiViet.Ten">
-            <span>Tên alias</span>
-            <input type="text" class="form-control" [(ngModel)]="baiViet.Alias" disabled>
+            <input type="text" class="form-control hidden" [(ngModel)]="baiViet.Alias" disabled>
             <span>Chọn danh mục</span>
             <select class="form-control" aria-label="Default select example"
                 (change)="chonDanhMuc($event.target.value)">
@@ -27,21 +26,48 @@
     </div>
     <div class="row">
         <div class="col-md-12 ck-noi-dung-ngan">
-            <ckeditor [(ngModel)]="baiViet.NoiDungNgan" [editor]="Editor" data="t"></ckeditor>
+            <ckeditor [(ngModel)]="baiViet.NoiDungNgan" [editor]="Editor" data=""></ckeditor>
         </div>
     </div>
     <div class="row">
         <div class="col-md-12">
-            <ckeditor [(ngModel)]="baiViet.NoiDung" [editor]="Editor" data="t"></ckeditor>
+            <ckeditor [(ngModel)]="baiViet.NoiDung" [editor]="Editor" data=""></ckeditor>
         </div>
     </div>
     <div class="row footer">
-        <div class="col-md-11"></div>
-        <div class="col-md-1">
+        <div class="col-md-8"></div>
+        <div class="col-md-4 d-flex justify-content-end">
+            <button style="margin-right: 5px;" (click)="themNhanVat()" class="btn btn-primary">Thêm nhân vật</button>
             <button (click)="save()" class="btn btn-primary">Lưu</button>
         </div>
     </div>
+    <div *ngIf="isThemNV" class="row">
+        <hr>
+        <div class="col-md-6">
+            <img [src]="hienThiHinhAnhNV" height="200">
+            <input id="defalt-top" [ngClass]="{'btn-file' : !hienThiHinhAnhNV}" type='file'
+                (change)="onSelectFileNV($event)">
+            <br>
+            <span>Tên nhân vật</span>
+            <input type="text" class="form-control" [(ngModel)]="baiViet.TenNV">
+            <span>Nội dung nhân vật</span>
+            <input type="text" class="form-control" [(ngModel)]="baiViet.NoiDungNV">            
+        </div>
+        <div class="col-md-6">
+            <span>Nơi tạo danh</span>
+            <input type="text" class="form-control" [(ngModel)]="baiViet.NoiTaoDanhNV">
+
+            <span>Điểm tàn bạo</span>
+            <input type="text" class="form-control" [(ngModel)]="baiViet.DiemTanBao">
+            <span>Điểm nguy hiểm</span>
+            <input type="text" class="form-control" [(ngModel)]="baiViet.DiemNguyHiem">
+            <span>Điểm bề ngoài</span>
+            <input type="text" class="form-control" [(ngModel)]="baiViet.DiemBeNgoai">
+        </div>
+    </div>
+    <div class="row footer2">
+        <div>
+
+        </div>
+    </div>
 </div>
-
-
-

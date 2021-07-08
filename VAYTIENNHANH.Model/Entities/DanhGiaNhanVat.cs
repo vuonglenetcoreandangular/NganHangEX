@@ -1,8 +1,8 @@
 ﻿namespace VAYTIENNHANH.Model.Entities
 {
-    public class DanhGiaToiPham : BaseEntity
+    public class DanhGiaNhanVat : BaseEntity
     {
-        public long ToiPhamId { get; set; }
+        public long NhanVatId { get; set; }
         public long DocGiaId { get; set; }
         public int Like { get; set; }
         public int Gian { get; set; }

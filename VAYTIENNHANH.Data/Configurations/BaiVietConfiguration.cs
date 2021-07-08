@@ -21,6 +21,10 @@ namespace VAYTIENNHANH.Data.Configurations
             builder.HasMany(rf => rf.BaiVietHinhAnhs)
                 .WithOne(r => r.BaiViet)
                 .HasForeignKey(rf => rf.BaiVietId);
+
+            builder.HasOne(rf => rf.NhanVat)
+                .WithMany(r => r.BaiViets)
+                .HasForeignKey(rf => rf.NhanVatId);
         }
     }
 }

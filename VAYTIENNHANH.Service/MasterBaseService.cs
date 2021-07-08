@@ -43,28 +43,29 @@ namespace VAYTIENNHANH.Service
             return bmpReturn;
         }
 
-        public void UpImageFromBase64ToJpg(string base64String, string imgName)
+        public void UpImageFromBase64ToJpg(string folder, string base64String, string imgName)
         {
             //byte[] jpgArray;
             Byte[] pngBytes = Convert.FromBase64String(base64String);
-            try {
+            try
+            {
                 using (MemoryStream msPng = new MemoryStream(pngBytes))
                 {
                     using (System.Drawing.Image img = System.Drawing.Image.FromStream(msPng))
                     {
                         using (MemoryStream msJpeg = new MemoryStream())
                         {
-                            img.Save($@"{RootImage.PathImg}baiviet\\{imgName}.jpg", ImageFormat.Jpeg);
+                            img.Save($@"{RootImage.PathImg}" + folder + $"{imgName}.jpg", ImageFormat.Jpeg);
                             //jpgArray = msJpeg.ToArray();
                         }
                     }
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
 
             }
-           
+
         }
 
 
