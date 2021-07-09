@@ -43,6 +43,8 @@ namespace VAYTIENNHANH.Service.Services.BaiViets
                 NgayTao = s.CreatedOn,
                 NhanVatId = s.NhanVatId != null ? s.NhanVatId : 0,
                 TenNhanVat = s.NhanVatId != null ? s.NhanVat.Ten : "",
+                NoiDungNV = s.NhanVatId != null ? s.NhanVat.DanhVong : "",
+                DiaDiemNV = s.NhanVatId != null ? s.NhanVat.NoiTaoDanhVong : "",
                 HinhAnhUrlNV = s.NhanVatId != null ? s.NhanVat.HinhAnh : "",
                 DiemTanBao = s.NhanVatId != null ? s.NhanVat.DiemNhanVats.Average(x => x.DiemNguyHiem) : 0,
                 DiemNguyHiem = s.NhanVatId != null ? s.NhanVat.DiemNhanVats.Average(x => x.DiemTanBao) : 0,

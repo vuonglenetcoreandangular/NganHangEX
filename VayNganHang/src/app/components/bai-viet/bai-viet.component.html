@@ -16,6 +16,28 @@
                 &nbsp;&nbsp; &nbsp;&nbsp;<i class="fa fa-eye"></i> &nbsp;&nbsp;232
                 &nbsp;&nbsp; &nbsp;&nbsp; <i class="fa fa-comments"></i> &nbsp;&nbsp;5
             </div>
+            <div *ngIf="baiViet.NhanVatId" class="nhan-vat">
+                <div class="row">
+                    <div class="col-md-12 title-nv">
+                        <p class="blue-color"><b>{{baiViet.DiaDiemNV}}: {{baiViet.TenNhanVat}} -
+                                {{baiViet.NoiDungNV}}</b></p>
+                    </div>
+                    <div class="col-md-6 img-nv">
+                        <img src="{{baiViet.HinhAnhUrlNV}}" alt="">
+                    </div>
+                    <div class="col-md-6 diem-nv">
+                        <p><b class="blue-color"><i class="fa fa-angle-double-right"></i></b> Điểm tàn bạo <b>{{baiViet.DiemTanBao}}</b></p>
+                        <p><b class="blue-color"><i class="fa fa-angle-double-right"></i></b> Điểm tàn bạo <b>{{baiViet.DiemTanBao}}</b></p>
+                        <p><b class="blue-color"><i class="fa fa-angle-double-right"></i></b> Điểm tàn bạo <b>{{baiViet.DiemTanBao}}</b></p>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p class="blue-color">Cộng đồng đánh giá về elimensr</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
             <div class="content" [innerHTML]="baiViet.NoiDung">
             </div>
         </div>

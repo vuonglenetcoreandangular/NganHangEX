@@ -37,8 +37,8 @@ export class VayNganHangHeaderComponent implements OnInit {
       this.danhMucMeNus = data;
     })
   }
-  onlick() {
-    this.router.navigate([`danh-muc/14`]);
+  onlick(idDanhMuc) {
+    this.router.navigate([`danh-muc/${idDanhMuc}`]);
   }
 
 

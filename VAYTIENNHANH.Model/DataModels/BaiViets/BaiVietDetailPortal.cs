@@ -18,6 +18,8 @@ namespace VAYTIENNHANH.Model.DataModels.BaiViets
         //Nhân vật
         public long? NhanVatId { get; set; }
         public string TenNhanVat { get; set; }
+        public string NoiDungNV { get; set; }
+        public string DiaDiemNV { get; set; }
         public string HinhAnhUrlNV { get; set; }
         public double DiemTanBao { get; set; }
         public double DiemNguyHiem { get; set; }

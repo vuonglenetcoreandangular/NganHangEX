@@ -8,3 +8,21 @@
     margin-top: -12px;
     margin-bottom: 10px;
 }
+.img-nv{
+    border: 1px solid grey;
+}
+.img-nv img{
+    width: 300px;
+    height: 350px;
+}
+.diem-nv{
+    border: 1px solid grey;
+    text-align: left;
+}
+
+.blue-color{
+    color: blue;
+}
+.title-nv{
+    text-align: left;
+}
