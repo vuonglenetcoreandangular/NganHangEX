@@ -4,7 +4,7 @@ using System.Text;
 
 namespace VAYTIENNHANH.Model.DataModels.BaiViets
 {
-    public class CauHinhHienThiBaiVIetVo
+    public class CauHinhHienThiBaiVietVo
     {
         public long Id { get; set; }
         public long BaiVIetId { get; set; }

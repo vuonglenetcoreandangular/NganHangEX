@@ -29,6 +29,12 @@ namespace VAYTIENNHANH.Api.Controllers
             return Ok("ggg");
         }
 
+        [HttpPost("Register")]
+        public async Task<ActionResult> Register()
+        {
+            return null;
+        }
+
         [HttpPost("Login")]
         public IActionResult Login([FromBody] LoginViewModel model)
         {

@@ -26,3 +26,16 @@ ul > li > a:hover{
 .header-right{
     padding-right: 200px;
 }
+.menu-header-right{
+    /* background-color: blue; */
+}
+.tbl-menu{
+    width: 100%;
+    height: 45px;
+}
+
+@media screen and (max-width: 600px) {
+	ul li{
+        max-height: 35px;
+    }
+}

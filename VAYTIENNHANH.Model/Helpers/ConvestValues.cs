@@ -12,7 +12,7 @@ namespace VAYTIENNHANH.Model.Helpers
             var DateNow = DateTime.Now;
             if (DateNow.Year == dateTime.Year && DateNow.Month == dateTime.Month)
             {
-                if ((DateNow.Day - dateTime.Day) <= 1)
+                if ((DateNow.Day - dateTime.Day) == 0)
                 {
                     var hour = (DateNow.Hour - dateTime.Hour);
                     if(hour == 0)
@@ -25,27 +25,27 @@ namespace VAYTIENNHANH.Model.Helpers
                         result = $"{hour} giờ trước";
                     }                   
                 }
-                else if ((DateNow.Day - dateTime.Day) > 1 && (DateNow.Day - dateTime.Day) <= 2)
+                else if ((DateNow.Day - dateTime.Day) >= 1 && (DateNow.Day - dateTime.Day) < 2)
                 {
                     result = "1 ngày trước";
                 }
-                else if ((DateNow.Day - dateTime.Day) > 2 && (DateNow.Day - dateTime.Day) <= 3)
+                else if ((DateNow.Day - dateTime.Day) >= 2 && (DateNow.Day - dateTime.Day) < 3)
                 {
                     result = "2 ngày trước";
                 }
-                else if ((DateNow.Day - dateTime.Day) > 3 && (DateNow.Day - dateTime.Day) <= 4)
+                else if ((DateNow.Day - dateTime.Day) >= 3 && (DateNow.Day - dateTime.Day) < 4)
                 {
                     result = "3 ngày trước";
                 }
-                else if ((DateNow.Day - dateTime.Day) > 4 && (DateNow.Day - dateTime.Day) <= 5)
+                else if ((DateNow.Day - dateTime.Day) >= 4 && (DateNow.Day - dateTime.Day) < 5)
                 {
                     result = "4 ngày trước";
                 }
-                else if ((DateNow.Day - dateTime.Day) > 5 && (DateNow.Day - dateTime.Day) <= 6)
+                else if ((DateNow.Day - dateTime.Day) >= 5 && (DateNow.Day - dateTime.Day) < 6)
                 {
                     result = "5 ngày trước";
                 }
-                else if ((DateNow.Day - dateTime.Day) > 6 && (DateNow.Day - dateTime.Day) <= 7)
+                else if ((DateNow.Day - dateTime.Day) >= 6 && (DateNow.Day - dateTime.Day) < 7)
                 {
                     result = "6 ngày trước";
                 }

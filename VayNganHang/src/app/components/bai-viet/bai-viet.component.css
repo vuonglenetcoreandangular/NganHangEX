@@ -1,28 +1,65 @@
-.nhan-vat{
+.nhan-vat {
     text-align: center;
 }
-.content-bai-viet{
+.content-bai-viet {
     margin-top: 10px;
 }
-.title-date{
+.title-date {
     margin-top: -12px;
     margin-bottom: 10px;
 }
-.img-nv{
-    border: 1px solid grey;
+.img-nv {
+    /* //border: 1px solid grey; */
 }
-.img-nv img{
-    width: 300px;
+.img-nv img {
+    /* width: 300px; */
     height: 350px;
 }
-.diem-nv{
+.diem-nv {
     border: 1px solid grey;
+    border-radius: 5px;
     text-align: left;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 
-.blue-color{
+.blue-color {
     color: blue;
 }
-.title-nv{
+.title-nv {
     text-align: left;
+}
+.customRange{
+    margin-bottom: 0 !important;
+}
+.range-val-min, .range-val-max {
+    margin-bottom: -5px;    
+}
+
+.range-val-max {
+    margin-left: 98px;    
+}
+
+.rangeDiem{
+    margin-right: 10px !important;
+}
+.diem-nv-footer{
+    text-align: center;
+}
+.cam-xuc button{
+    color: rgb(84, 84, 247);
+    margin-right: 10px;
+}
+.cam-xuc-text{
+    color: rgb(121, 119, 122);
+}
+.cam-xuc img{
+    width: 32px;
+    height: 32px;
+}
+
+@media screen and (max-width: 600px) {
+	.content-bai-viet {
+        margin-top: 50px;
+    }
 }

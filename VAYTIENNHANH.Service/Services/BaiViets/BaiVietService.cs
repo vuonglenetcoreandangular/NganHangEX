@@ -54,7 +54,7 @@ namespace VAYTIENNHANH.Service.Services.BaiViets
             return data;
         }
 
-        public async Task<List<CauHinhHienThiBaiVIetVo>> GetBaiVietHienThi(long danhMucId, int viTriBaiViet)
+        public async Task<List<CauHinhHienThiBaiVietVo>> GetBaiVietHienThi(long danhMucId, int viTriBaiViet)
         {
             int sobanGhi = 0;
             switch (viTriBaiViet)
@@ -77,7 +77,7 @@ namespace VAYTIENNHANH.Service.Services.BaiViets
             {
                 var dataHome = await _cauHinhHienThiBaiVietRepository.TableNoTracking
                 .Where(x => x.DanhMucId == null && x.ViTriHienThi == viTriBaiViet)
-                .Select(s => new CauHinhHienThiBaiVIetVo
+                .Select(s => new CauHinhHienThiBaiVietVo
                 {
                     Id = s.Id,
                     BaiVIetId = s.BaiVietId,
@@ -90,7 +90,7 @@ namespace VAYTIENNHANH.Service.Services.BaiViets
             }
             var data = await _cauHinhHienThiBaiVietRepository.TableNoTracking
                 .Where(x => x.DanhMucId == danhMucId && x.ViTriHienThi == viTriBaiViet)
-                .Select(s => new CauHinhHienThiBaiVIetVo
+                .Select(s => new CauHinhHienThiBaiVietVo
                 {
                     Id = s.Id,
                     BaiVIetId = s.BaiVietId,
@@ -224,7 +224,7 @@ namespace VAYTIENNHANH.Service.Services.BaiViets
             return listBaiViet;
         }
 
-        public async Task<List<CauHinhHienThiBaiVIetVo>> GetThemBaiVietChoTrang(long danhMucId, int viTriBaiViet)
+        public async Task<List<CauHinhHienThiBaiVietVo>> GetThemBaiVietChoTrang(long danhMucId, int viTriBaiViet)
         {
             var data = _repository.TableNoTracking;
             if (danhMucId == 0)
@@ -235,7 +235,7 @@ namespace VAYTIENNHANH.Service.Services.BaiViets
             {
                 data = data.Where(x => x.DanhMucId == danhMucId && x.Deleted != true && !x.CauHinhHienThiBaiViets.Select(i => i.BaiVietId).Contains(x.Id));
             }
-            var result = await data.Select(s => new CauHinhHienThiBaiVIetVo
+            var result = await data.Select(s => new CauHinhHienThiBaiVietVo
             {
                 Id = s.Id,
                 BaiVIetId = s.Id,

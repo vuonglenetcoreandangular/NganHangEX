@@ -38,9 +38,13 @@ export class VayNganHangHeaderComponent implements OnInit {
     })
   }
   onlick(idDanhMuc) {
-    this.router.navigate([`danh-muc/${idDanhMuc}`]);
+    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() =>
+      this.router.navigate([`danh-muc/${idDanhMuc}`]));
   }
-
+  onlickToHome(){
+    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() =>
+    this.router.navigate([`home`]));
+  }
 
   signInWithGoogle(): void {
     this.authService.signIn(GoogleLoginProvider.PROVIDER_ID).then((data) => {

@@ -30,3 +30,10 @@ img{
 .baiviet-main{
     padding-top: 10px;
 }
+
+
+@media screen and (max-width: 600px) {
+	.page-content {
+        margin-top: 50px;
+    }
+}

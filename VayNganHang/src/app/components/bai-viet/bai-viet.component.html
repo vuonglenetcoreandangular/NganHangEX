@@ -12,10 +12,11 @@
 
             <div class="title-date">
                 <i class="fa fa-clock-o">
-                </i>&nbsp;&nbsp;Dec 31,2017
-                &nbsp;&nbsp; &nbsp;&nbsp;<i class="fa fa-eye"></i> &nbsp;&nbsp;232
+                </i>&nbsp;&nbsp;{{baiViet.NgayTaoDisplay}}
+                &nbsp;&nbsp; &nbsp;&nbsp;<i class="fa fa-eye"></i> &nbsp;&nbsp;{{baiViet.LuotXem}}
                 &nbsp;&nbsp; &nbsp;&nbsp; <i class="fa fa-comments"></i> &nbsp;&nbsp;5
             </div>
+
             <div *ngIf="baiViet.NhanVatId" class="nhan-vat">
                 <div class="row">
                     <div class="col-md-12 title-nv">
@@ -26,17 +27,126 @@
                         <img src="{{baiViet.HinhAnhUrlNV}}" alt="">
                     </div>
                     <div class="col-md-6 diem-nv">
-                        <p><b class="blue-color"><i class="fa fa-angle-double-right"></i></b> Điểm tàn bạo <b>{{baiViet.DiemTanBao}}</b></p>
-                        <p><b class="blue-color"><i class="fa fa-angle-double-right"></i></b> Điểm tàn bạo <b>{{baiViet.DiemTanBao}}</b></p>
-                        <p><b class="blue-color"><i class="fa fa-angle-double-right"></i></b> Điểm tàn bạo <b>{{baiViet.DiemTanBao}}</b></p>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <p class="blue-color">Cộng đồng đánh giá về elimensr</p>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <p><b class="blue-color">Cộng đồng đánh giá</b></p>
+                                        <div class="row">
+                                            <div class="col-md-1">
+                                                <b class="blue-color"><i class="fa fa-angle-double-right"></i></b>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <b>{{baiViet.DiemTanBao}}</b>
+                                            </div>
+                                            <div class="col-md-9">
+                                                <b>Điểm tàn bạo</b>
+                                            </div>
+                                        </div>
+                                        <!-- <div class="row">
+                                            <div class="col-md-1">
+                                                <b class="blue-color"><i class="fa fa-angle-double-right"></i></b>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <b>{{baiViet.DiemNguyHiem}}</b>
+                                            </div>
+                                            <div class="col-md-9">
+                                                <b>Điểm nguy hiểm</b>
+                                            </div>
+                                        </div> -->
+                                        <div class="row">
+                                            <div class="col-md-1">
+                                                <b class="blue-color"><i class="fa fa-angle-double-right"></i></b>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <b>{{baiViet.DiemBeNgoai}}</b>
+                                            </div>
+                                            <div class="col-md-9">
+                                                <b>Điểm bề ngoài</b>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <hr>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <p><b class="blue-color">Mời bạn chấm điểm nhân vật này</b></p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <label class="form-label customRange" for="customRange1">Điểm tàn bạo</label>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="range align-self-center">
+                                            <pre class="range-val-min float-left">0</pre>
+                                            <pre class="range-val-max float-left">100</pre><br>
+                                            <input (change)="rangeDiemTanBao($event.target.value)" type="range"
+                                                class="rangeDiem form-range float-left" min="0" max="100"
+                                                id="customRange1" />
+                                            <p class="float-left">bạn chọn: <b class="blue-color"> {{diemTanBao}}
+                                                </b><b>
+                                                    điểm</b></p>
+                                        </div>
+                                    </div>
+                                    <!-- <div class="col-md-12">
+                                        <label class="form-label customRange" for="customRange2">Điểm nguy hiểm</label>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="range align-self-center">
+                                            <pre class="range-val-min float-left">0</pre>
+                                            <pre class="range-val-max float-left">100</pre><br>
+                                            <input (change)="rangeDiemNguyHiem($event.target.value)" type="range"
+                                                class="rangeDiem form-range float-left" min="0" max="100"
+                                                id="customRange2" />
+                                            <p class="float-left">bạn chọn: <b class="blue-color"> {{diemNguyHiem}}
+                                                </b><b>
+                                                    điểm</b></p>
+                                        </div>
+                                    </div> -->
+                                    <div class="col-md-12">
+                                        <label class="form-label customRange" for="customRange3">Điểm bề ngoài .</label>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="range align-self-center">
+                                            <pre class="range-val-min float-left">0</pre>
+                                            <pre class="range-val-max float-left">100</pre><br>
+                                            <input (change)="rangeDiemBeNgoai($event.target.value)" type="range"
+                                                class="rangeDiem form-range float-left" min="0" max="100"
+                                                id="customRange3" />
+                                            <p class="float-left">bạn chọn: <b class="blue-color"> {{diemBeNgoai}}
+                                                </b><b>
+                                                    điểm</b></p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
                         </div>
+
+                        <div class="row diem-nv-footer">
+                            <div class="col-md-12">
+                                <button class="btn btn-sm btn-primary">Bình chọn</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <hr>
+                        <div class="cam-xuc">
+                            <button class="btn btn-sm btn-prinamy"><img src="https://localhost:5001//camxuc/imglike.png" alt=""><b class="cam-xuc-text"> 100</b> </button>
+                            <button class="btn btn-sm btn-prinamy"><img src="https://localhost:5001//camxuc/imggian.png" alt=""> <b class="cam-xuc-text"> 100</b> </button>
+                            <button class="btn btn-sm btn-prinamy"><img src="https://localhost:5001//camxuc/imghaha.png" alt=""><b class="cam-xuc-text"> 100</b> </button>
+                            <button class="btn btn-sm btn-prinamy"><img src="https://localhost:5001//camxuc/imgghet.png" alt=""><b class="cam-xuc-text"> 100</b> </button>
+                        </div>
+                        <hr>
                     </div>
                 </div>
 
+            </div>
+            <div *ngIf="baiViet.HienThiAnh" class="img-bai-viet">
+                <img src="{{baiViet.HinhAnhUrl}}" alt="">
             </div>
             <div class="content" [innerHTML]="baiViet.NoiDung">
             </div>
