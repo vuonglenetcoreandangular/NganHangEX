@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
@@ -16,8 +16,10 @@ export class VayNganHangHeaderComponent implements OnInit {
   user: SocialUser;
   loggedIn: boolean;
   invalidLogin: boolean;
+  fiexd: boolean;
   // ngForm: any;
-  constructor(private dialog: MatDialog, private apiService: ApiService, private router: Router, private authService: SocialAuthService) { }
+  @ViewChild('headerDiv') myDiv: HTMLElement;
+  constructor(private renderer: Renderer2, private dialog: MatDialog, private apiService: ApiService, private router: Router, private authService: SocialAuthService) { }
 
   ngOnInit(): void {
     this.getDanhMucMenu();
@@ -28,10 +30,20 @@ export class VayNganHangHeaderComponent implements OnInit {
 
       console.log('x', this.user)
       console.log('y', this.loggedIn)
+
+
     });
 
   }
-
+  @HostListener('window:scroll', ['$event']) onScrollEvent($event) {
+    console.log(window.scrollY)
+    if (window.scrollY >= 100) {
+      this.fiexd = true;
+      // this.renderer.setStyle(this.myDiv, "color", "blue");
+    }else{
+      this.fiexd = false;
+    }
+  }
   getDanhMucMenu() {
     this.apiService.get(`DanhMucPortal/GetDanhMucHienThiMenu`).toPromise().then((data) => {
       this.danhMucMeNus = data;
@@ -41,9 +53,9 @@ export class VayNganHangHeaderComponent implements OnInit {
     this.router.navigateByUrl('/', { skipLocationChange: true }).then(() =>
       this.router.navigate([`danh-muc/${idDanhMuc}`]));
   }
-  onlickToHome(){
+  onlickToHome() {
     this.router.navigateByUrl('/', { skipLocationChange: true }).then(() =>
-    this.router.navigate([`home`]));
+      this.router.navigate([`home`]));
   }
 
   signInWithGoogle(): void {

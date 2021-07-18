@@ -54,6 +54,8 @@ namespace VAYTIENNHANH.Api.Controllers
                 Ten = data.Ten,
                 Alias = data.Alias,
                 DanhMucId = data.DanhMucId,
+                NoiDungNgan = data.NoiDungNgan,
+                NoiDungTomTat = data.NoiDungTomTat,
                 NoiDung = data.NoiDung,
                 HinhAnhBase64 = data.HinhAnh,
                 HienThi = data.HienThi.GetValueOrDefault(),
@@ -78,10 +80,12 @@ namespace VAYTIENNHANH.Api.Controllers
                 Alias = model.Alias,
                 DanhMucId = model.DanhMucId,
                 NoiDungNgan = model.NoiDungNgan,
+                NoiDungTomTat = model.NoiDungTomTat,
                 NoiDung = model.NoiDung,
                 HinhAnh = $@"{RootImage.RootIMG}baiviet\{model.Alias + lastNameIMG}.jpg",
                 HienThi = model.HienThi,
                 HienThiAnh = model.HienThiAnh,
+                HienThiTrangChu = model.HienThiTrangChu,
                 ThuTuHienThi = model.ThuTuHienThi,
                 LuotXemAo = 200,
                 LuotXem = 0,
@@ -94,36 +98,11 @@ namespace VAYTIENNHANH.Api.Controllers
             hinhAnh.TenHinhAnh = model.Alias + lastNameIMG + "png";
             hinhAnh.CreatedOn = dateNow;
 
-            if (!string.IsNullOrEmpty(model.TenNV))
-            {
-                //add NV
-                var nhanVat = new NhanVat();
-                nhanVat.Ten = model.TenNV;
-                nhanVat.DanhVong = model.NoiDungNV;
-                nhanVat.NoiTaoDanhVong = model.NoiTaoDanhNV;
-                nhanVat.HinhAnh = $@"{RootImage.RootIMG}nhanvat\{model.Alias + lastNameIMG}.jpg";
-                nhanVat.CreatedOn = dateNow;
-
-                var diemNhanVat = new DiemNhanVat();
-                diemNhanVat.DocGiaId = 2;
-                diemNhanVat.DiemTanBao = model.DiemTanBao.GetValueOrDefault();
-                diemNhanVat.DiemNguyHiem = model.DiemNguyHiem.GetValueOrDefault();
-                diemNhanVat.DiemBeNgoai = model.DiemBeNgoai.GetValueOrDefault();
-                diemNhanVat.CreatedOn = dateNow;
-
-                nhanVat.DiemNhanVats.Add(diemNhanVat);
-
-                data.NhanVat = nhanVat;
-            }
-
+            
             baiVietHinhAnh.HinhAnh = hinhAnh;
             data.BaiVietHinhAnhs.Add(baiVietHinhAnh);
             _service.UpImageFromBase64ToJpg(PathFolder.PathImgBaiViet, model.HinhAnhBase64, model.Alias + lastNameIMG);
-            if (!string.IsNullOrEmpty(model.TenNV))
-            {
-                _service.UpImageFromBase64ToJpg(PathFolder.PathImgNhanVat, model.HinhAnhBase64NV, model.Alias + lastNameIMG);
-            }
-            
+                     
             _service.Create(data);
             
             return Ok();
@@ -140,6 +119,7 @@ namespace VAYTIENNHANH.Api.Controllers
             data.Alias = model.Alias;
             data.DanhMucId = model.DanhMucId;
             data.NoiDungNgan = model.NoiDungNgan;
+            data.NoiDungTomTat = model.NoiDungTomTat;
             data.NoiDung = model.NoiDung;
             //data.HinhAnh = $"wwwroot\\baiviet\\{model.Alias + lastNameIMG}.png";
             data.HienThi = model.HienThi;

@@ -32,23 +32,17 @@ namespace VAYTIENNHANH.Service.Services.BaiViets
 
         public async Task<BaiVietDetailPortal> GetBaiVietDetail(long baiVietId)
         {
-            var data = _repository.TableNoTracking.Include(s => s.NhanVat).ThenInclude(s => s.DiemNhanVats).Select(s => new BaiVietDetailPortal
+            var data = _repository.TableNoTracking.Select(s => new BaiVietDetailPortal
             {
                 Id = s.Id,
                 TenBaiViet = s.Ten,
+                NoiDungTomTat = s.NoiDungTomTat,
                 NoiDung = s.NoiDung,
                 HienThiAnh = s.HienThiAnh.GetValueOrDefault(),
                 HinhAnhUrl = s.HinhAnh,
                 LuotXem = s.LuotXem,
                 NgayTao = s.CreatedOn,
-                NhanVatId = s.NhanVatId != null ? s.NhanVatId : 0,
-                TenNhanVat = s.NhanVatId != null ? s.NhanVat.Ten : "",
-                NoiDungNV = s.NhanVatId != null ? s.NhanVat.DanhVong : "",
-                DiaDiemNV = s.NhanVatId != null ? s.NhanVat.NoiTaoDanhVong : "",
-                HinhAnhUrlNV = s.NhanVatId != null ? s.NhanVat.HinhAnh : "",
-                DiemTanBao = s.NhanVatId != null ? s.NhanVat.DiemNhanVats.Average(x => x.DiemNguyHiem) : 0,
-                DiemNguyHiem = s.NhanVatId != null ? s.NhanVat.DiemNhanVats.Average(x => x.DiemTanBao) : 0,
-                DiemBeNgoai = s.NhanVatId != null ? s.NhanVat.DiemNhanVats.Average(x => x.DiemBeNgoai) : 0
+
             }).FirstOrDefault(x => x.Id == baiVietId);
 
             return data;
@@ -182,6 +176,33 @@ namespace VAYTIENNHANH.Service.Services.BaiViets
             return query;
         }
 
+        //portal phận dưới các mục khu vực
+        public async Task<List<BaiVietGridPortal>> GetBaiListBaiViet(long? danhMucId)
+        {
+            var data = _repository.TableNoTracking.Where(x => x.Deleted != true);
+            if (danhMucId == 0)//trang chủ
+            {
+                data = data.Where(x => x.HienThiTrangChu == true);
+            }
+            else//trang danhmuc:/id
+            {
+                data = data.Where(x => x.DanhMucId == danhMucId);
+            }
+            var query = await data.OrderBy(x=>x.CreatedOn).Select(s => new BaiVietGridPortal
+            {
+                Id = s.Id,
+                TenBaiViet = s.Ten,
+                Alias = s.Alias,
+                NoiDungNgan = s.NoiDungNgan,
+                //NoiDung = s.NoiDung,
+                HinhAnhUrl = s.HinhAnh,
+                LuotXem = s.LuotXemAo + s.LuotXem,
+                NgayTao = s.CreatedOn
+            }).Take(3).ToListAsync();
+            return query;
+        }
+
+        //admin
         public async Task<List<BaiVietGrid>> getDanhSachBaiViet()
         {
             var listBaiViet = await _repository.TableNoTracking.Where(x => x.Deleted != true).Include(x => x.DanhMucBaiViet).Select(s => new BaiVietGrid

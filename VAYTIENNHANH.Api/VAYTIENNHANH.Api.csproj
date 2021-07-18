@@ -20,7 +20,6 @@
     <Folder Include="Areas\Portal\Data\" />
     <Folder Include="Areas\Portal\Models\" />
     <Folder Include="wwwroot\baiviet\" />
-    <Folder Include="wwwroot\nhanvat\" />
   </ItemGroup>
 
 </Project>

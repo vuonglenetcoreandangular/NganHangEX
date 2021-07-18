@@ -13,11 +13,13 @@ export class BaiVietComponent implements OnInit {
   diemTanBao: any = 50;
   diemNguyHiem: any = 50;
   diemBeNgoai: any = 50;
+  listBaiVietTrangChu: unknown;
   constructor(private apiService: ApiService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     let baiVietId = this.route.snapshot.params['id'];
     this.getBaiVietDetail(baiVietId);
+    this.getListBaiViet(0);
   }
 
   getBaiVietDetail(baiVietId) {
@@ -25,7 +27,12 @@ export class BaiVietComponent implements OnInit {
       this.baiViet = data;
     })
   }
-
+  async getListBaiViet(danhMucId) {
+    await this.apiService.get(`DanhMucPortal/GetBaiListBaiViet/${danhMucId}`).toPromise().then((data) => {
+      this.listBaiVietTrangChu = data;
+      console.log('xxa',this.listBaiVietTrangChu)
+    })
+  }
 
   rangeDiemTanBao(e) {
     this.diemTanBao = e;
@@ -39,7 +46,31 @@ export class BaiVietComponent implements OnInit {
     this.diemBeNgoai = e;
   }
 
+  tangLike(baiVietId) {
+    alert(baiVietId)
+    this.apiService.post(`BaiVietPortal/TangLike`, baiVietId).toPromise().then((data) => {
+      this.baiViet = data;
+    })
+  }
 
+  tangBuon(baiVietId) {
+    this.apiService.post(`BaiVietPortal/TangLike`, baiVietId).toPromise().then((data) => {
+      this.baiViet = data;
+    })
+  }
+
+  tangGian(baiVietId) {
+    this.apiService.post(`BaiVietPortal/TangLike`, baiVietId).toPromise().then((data) => {
+      this.baiViet = data;
+    })
+  }
+
+  tangCuoi(baiVietId) {
+    
+    this.apiService.post(`BaiVietPortal/TangLike`, baiVietId).toPromise().then((data) => {
+      this.baiViet = data;
+    })
+  }
 }
 
 

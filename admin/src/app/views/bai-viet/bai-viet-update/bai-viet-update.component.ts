@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../../../services/api.service';
 import { BaseService } from '../../../services/base.service';
 import { BaiVietService } from '../bai-viet.service';
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 @Component({
   selector: 'app-bai-viet-update',
@@ -10,6 +11,7 @@ import { BaiVietService } from '../bai-viet.service';
   styleUrls: ['./bai-viet-update.component.scss']
 })
 export class BaiVietUpdateComponent implements OnInit {
+  public Editor = ClassicEditor;
   baiViet: any ={};
   danhMuc: any =[];
   constructor(private route: ActivatedRoute, private baiVietService: BaiVietService,
@@ -22,6 +24,12 @@ export class BaiVietUpdateComponent implements OnInit {
     this.getDanhMuc();
   }
 
+  public onReady(editor) {
+    editor.ui.getEditableElement().parentElement.insertBefore(
+      editor.ui.view.toolbar.element,
+      editor.ui.getEditableElement()
+    );
+  }
 
   getById(id: number) {
     this.baiVietService.getById(id).toPromise().then((data) => {
@@ -47,10 +55,12 @@ export class BaiVietUpdateComponent implements OnInit {
   save() {
 
     let baiVietFromData = new FormData();
+    baiVietFromData.append('Id', this.baiViet.Id)
     baiVietFromData.append('Ten', this.baiViet.Ten)
     baiVietFromData.append('Alias', this.baiViet.Alias)
     baiVietFromData.append('Logo', this.baiViet.Logo)
     baiVietFromData.append('NoiDungNgan', this.baiViet.NoiDungNgan)
+    baiVietFromData.append('NoiDungTomTat', this.baiViet.NoiDungTomTat)
     baiVietFromData.append('NoiDung', this.baiViet.NoiDung)
     baiVietFromData.append('DanhMucId', this.baiViet.DanhMucId)
     baiVietFromData.append('ThuTuHienThi', this.baiViet.ThuTuHienThi)

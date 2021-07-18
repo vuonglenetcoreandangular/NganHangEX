@@ -22,9 +22,10 @@ namespace VAYTIENNHANH.Data.Configurations
                 .WithOne(r => r.BaiViet)
                 .HasForeignKey(rf => rf.BaiVietId);
 
-            builder.HasOne(rf => rf.NhanVat)
-                .WithMany(r => r.BaiViets)
-                .HasForeignKey(rf => rf.NhanVatId);
+            builder.HasMany(rf => rf.CamXucBaiViets)
+               .WithOne(r => r.BaiViet)
+               .HasForeignKey(rf => rf.BaiVietId);
+            
         }
     }
 }

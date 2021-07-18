@@ -1,4 +1,6 @@
-﻿namespace VAYTIENNHANH.Model.Entities
+﻿using System.Collections.Generic;
+
+namespace VAYTIENNHANH.Model.Entities
 {
     public class DocGia : BaseEntity
     {
@@ -10,5 +12,13 @@
         public string TenDocGia { get; set; }
         public string Avatar { get; set; }
         public int LuotXemWeb { get; set; }
+
+        private ICollection<CamXucBaiViet> _camXucBaiViet;
+        public virtual ICollection<CamXucBaiViet> CamXucBaiViets
+        {
+            get => _camXucBaiViet ??
+                   (_camXucBaiViet = new List<CamXucBaiViet>());
+            protected set => _camXucBaiViet = value;
+        }
     }
 }

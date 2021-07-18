@@ -47,5 +47,12 @@ namespace VAYTIENNHANH.Api.Controllers.Portal
             var data = await _baiVietService.getBaiVietKV3(danhMucId);
             return Ok(data);
         }
+        
+        [HttpGet("GetBaiListBaiViet/{danhMucId}")]
+        public async Task<ActionResult> GetBaiListBaiViet(long? danhMucId)
+        {
+            var data = await _baiVietService.GetBaiListBaiViet(danhMucId);
+            return Ok(data);
+        }
     }
 }

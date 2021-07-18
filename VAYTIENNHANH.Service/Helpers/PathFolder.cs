@@ -7,6 +7,5 @@ namespace VAYTIENNHANH.Service.Helpers
     public static class PathFolder
     {
         public const string PathImgBaiViet = @"baiviet\\";
-        public const string PathImgNhanVat = @"nhanvat\\";
     }
 }

@@ -15,8 +15,11 @@
 
             Thứ tự hiển thị
             <input type="number" class="form-control" [(ngModel)]="baiViet.ThuTuHienThi">
+
             <span>Hiển thị</span>
             <input type="checkbox" class="btn btn-default" [(ngModel)]="baiViet.HienThi">
+            <span> Hiển thị trang chủ</span>
+            <input type="checkbox" class="btn btn-default" [(ngModel)]="baiViet.HienThiTrangChu">
         </div>
         <div class="col-md-6">
             <img [src]="hienThiHinhAnh" height="200">
@@ -30,6 +33,11 @@
         </div>
     </div>
     <div class="row">
+        <div class="col-md-12 ck-noi-dung-ngan">
+            <ckeditor [(ngModel)]="baiViet.NoiDungTomTat" [editor]="Editor" data=""></ckeditor>
+        </div>
+    </div>
+    <div class="row">
         <div class="col-md-12">
             <ckeditor [(ngModel)]="baiViet.NoiDung" [editor]="Editor" data=""></ckeditor>
         </div>
@@ -37,34 +45,10 @@
     <div class="row footer">
         <div class="col-md-8"></div>
         <div class="col-md-4 d-flex justify-content-end">
-            <button style="margin-right: 5px;" (click)="themNhanVat()" class="btn btn-primary">Thêm nhân vật</button>
             <button (click)="save()" class="btn btn-primary">Lưu</button>
         </div>
     </div>
-    <div *ngIf="isThemNV" class="row">
-        <hr>
-        <div class="col-md-6">
-            <img [src]="hienThiHinhAnhNV" height="200">
-            <input id="defalt-top" [ngClass]="{'btn-file' : !hienThiHinhAnhNV}" type='file'
-                (change)="onSelectFileNV($event)">
-            <br>
-            <span>Tên nhân vật</span>
-            <input type="text" class="form-control" [(ngModel)]="baiViet.TenNV">
-            <span>Nội dung nhân vật</span>
-            <input type="text" class="form-control" [(ngModel)]="baiViet.NoiDungNV">            
-        </div>
-        <div class="col-md-6">
-            <span>Nơi tạo danh</span>
-            <input type="text" class="form-control" [(ngModel)]="baiViet.NoiTaoDanhNV">
 
-            <span>Điểm tàn bạo</span>
-            <input type="text" class="form-control" [(ngModel)]="baiViet.DiemTanBao">
-            <span>Điểm nguy hiểm</span>
-            <input type="text" class="form-control" [(ngModel)]="baiViet.DiemNguyHiem">
-            <span>Điểm bề ngoài</span>
-            <input type="text" class="form-control" [(ngModel)]="baiViet.DiemBeNgoai">
-        </div>
-    </div>
     <div class="row footer2">
         <div>
 

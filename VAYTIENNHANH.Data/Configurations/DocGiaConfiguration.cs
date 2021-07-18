@@ -10,6 +10,10 @@ namespace VAYTIENNHANH.Data.Configurations
         {
             builder.ToTable("DocGia");
             builder.HasKey(x => x.Id);
+
+            builder.HasMany(rf => rf.CamXucBaiViets)
+             .WithOne(r => r.DocGia)
+             .HasForeignKey(rf => rf.DocGiaId);
         }
     }
 }

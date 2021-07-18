@@ -19,8 +19,6 @@ export class BaiVietCreateComponent implements OnInit {
   baiViet: any = {};
   danhMuc: any = [];
   hienThiHinhAnh: any;
-  hienThiHinhAnhNV: any;
-  isThemNV: boolean = false;
   baiVietFromData = new FormData();
 
   constructor(private apiService: ApiService, private sanitizer: DomSanitizer,
@@ -29,10 +27,10 @@ export class BaiVietCreateComponent implements OnInit {
   ngOnInit(): void {
 
     this.baiViet.HienThi = true;
-    ClassicEditor
-      .create(document.querySelector('#editor'))
-      .then()
-      .catch();
+    // ClassicEditor
+    //   .create(document.querySelector('#editor'))
+    //   .then()
+    //   .catch();
     this.getDanhMuc();
   }
 
@@ -61,26 +59,18 @@ export class BaiVietCreateComponent implements OnInit {
       this.toastr.error('Lỗi chưa nhập các trường!');
       return;
     }
-    if (this.isThemNV) {
-      if (!this.baiViet.TenNV || !this.baiViet.NoiDungNV || !this.baiViet.NoiTaoDanhNV || !this.hienThiHinhAnhNV){
-        this.toastr.error('Lỗi chưa nhập các trường (nhân vật)!');
-      return;
-      }
-    }
+    
     this.baiVietFromData.append('Ten', this.baiViet.Ten);
     this.baiVietFromData.append('Alias', this.baiViet.Alias);
     this.baiVietFromData.append('NoiDungNgan', this.baiViet.NoiDungNgan);
+    this.baiVietFromData.append('NoiDungTomTat', this.baiViet.NoiDung);
     this.baiVietFromData.append('NoiDung', this.baiViet.NoiDung);
     this.baiVietFromData.append('DanhMucId', this.baiViet.DanhMucId);
+    
+    this.baiVietFromData.append('HienThiTrangChu', this.baiViet.HienThiTrangChu);
     this.baiVietFromData.append('ThuTuHienThi', this.baiViet.ThuTuHienThi);
     this.baiVietFromData.append('HienThi', this.baiViet.HienThi);
 
-    this.baiVietFromData.append('TenNV', this.baiViet.TenNV);
-    this.baiVietFromData.append('NoiDungNV', this.baiViet.NoiDungNV);
-    this.baiVietFromData.append('NoiTaoDanhNV', this.baiViet.NoiTaoDanhNV);
-    this.baiVietFromData.append('DiemTanBao', this.baiViet.DiemTanBao);
-    this.baiVietFromData.append('DiemNguyHiem', this.baiViet.DiemNguyHiem);
-    this.baiVietFromData.append('DiemBeNgoai', this.baiViet.DiemBeNgoai);
     this.baseService.create(this.baiVietFromData).toPromise().then((data: any) => {
       this.router.navigate(['bai-viet']);
     }, (error) => {
@@ -103,24 +93,7 @@ export class BaiVietCreateComponent implements OnInit {
       }
     }
   }
-  onSelectFileNV(event) { // called each time file input changes
 
-    if (event.target.files && event.target.files[0]) {
-      var reader = new FileReader();
-
-
-      reader.readAsDataURL(event.target.files[0]); // read file as data url
-
-      reader.onload = (event) => { // called once readAsDataURL is completed
-        this.baiVietFromData.append('HinhAnhBase64NV', event.target.result.toString().split(',')[1]);
-        this.hienThiHinhAnhNV =
-          (this.sanitizer.bypassSecurityTrustResourceUrl(event.target.result.toString()) as any).changingThisBreaksApplicationSecurity;
-      }
-    }
-  }
-  themNhanVat() {
-    this.isThemNV = !this.isThemNV;
-  }
   utf8ConvertJavascript(obj) {
     var str = obj;
     str = str.toLowerCase();

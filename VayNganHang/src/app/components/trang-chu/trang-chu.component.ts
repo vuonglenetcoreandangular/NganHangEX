@@ -11,6 +11,8 @@ export class TrangChuComponent implements OnInit {
   baiVietKV1: any = [];
   baiVietKV2: any = [];
   baiVietKV3: any = [];
+
+  listBaiVietTrangChu: any =[];
   constructor(private apiService: ApiService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
@@ -18,6 +20,8 @@ export class TrangChuComponent implements OnInit {
     this.getBaiVIetKV1(danhMucId);
     this.getBaiVIetKV2(danhMucId);
     this.getBaiVIetKV3(danhMucId);
+    this.getListBaiViet(danhMucId);
+    
 
     //localStorage.setItem('vuong','vuongle');
     //localStorage.removeItem('vuong');
@@ -51,6 +55,14 @@ export class TrangChuComponent implements OnInit {
       this.baiVietKV3 = data;
     })
   }
+
+  async getListBaiViet(danhMucId) {
+    await this.apiService.get(`DanhMucPortal/GetBaiListBaiViet/${danhMucId}`).toPromise().then((data) => {
+      this.listBaiVietTrangChu = data;
+      console.log('xxa',this.listBaiVietTrangChu)
+    })
+  }
+  
   xemChiTiet(baiVIetId) {
     this.router.navigate([`bai-viet/${baiVIetId}`]);
   }

@@ -19,6 +19,7 @@ namespace VAYTIENNHANH.Service.Services.BaiViets
         Task<List<BaiVietGridPortal>> getBaiVietKV1(long? danhMucId);
         Task<List<BaiVietGridPortal>> getBaiVietKV2(long? danhMucId);
         Task<List<BaiVietGridPortal>> getBaiVietKV3(long? danhMucId);
+        Task<List<BaiVietGridPortal>> GetBaiListBaiViet(long? danhMucId);
 
         Task<BaiVietDetailPortal> GetBaiVietDetail(long baiVietId);
     }

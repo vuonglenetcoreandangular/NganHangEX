@@ -7,15 +7,16 @@ namespace VAYTIENNHANH.Model.Entities
         public string Ten { get; set; }
         public string Alias { get; set; }
         public string HinhAnh { get; set; }
+        public string NoiDungTomTat { get; set; }
         public string NoiDungNgan { get; set; }
         public string NoiDung { get; set; }
         public int? LuotXemAo { get; set; }
         public int? LuotXem { get; set; }
         public bool? HienThi { get; set; }
         public bool? HienThiAnh { get; set; }
+        public bool? HienThiTrangChu { get; set; }
         public int ThuTuHienThi { get; set; }
         public long DanhMucId { get; set; }
-        public long? NhanVatId { get; set; }
         public bool? Deleted { get; set; }
         public virtual DanhMucBaiViet DanhMucBaiViet { get; set; }
       
@@ -35,6 +36,14 @@ namespace VAYTIENNHANH.Model.Entities
             protected set => _baiVietHinhAnh = value;
         }
 
-        public virtual NhanVat NhanVat { get; set; }
+       
+
+        private ICollection<CamXucBaiViet> _camXucBaiViet;
+        public virtual ICollection<CamXucBaiViet> CamXucBaiViets
+        {
+            get => _camXucBaiViet ??
+                   (_camXucBaiViet = new List<CamXucBaiViet>());
+            protected set => _camXucBaiViet = value;
+        }
     }
 }
