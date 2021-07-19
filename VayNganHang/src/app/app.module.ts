@@ -11,13 +11,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { DanhMucDetailComponent } from './components/danh-muc-detail/danh-muc-detail.component';
 import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-login';
 import { GoogleLoginProvider, FacebookLoginProvider } from 'angularx-social-login';
-import { TestLoginComponent } from './components/test-login/test-login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from "@angular/material/button";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule } from '@angular/common';
 import { LoginPopupComponent } from './components/vay-ngan-hang-header/login-popup/login-popup.component';
+import { PinMonthComponent } from './components/pin-month/pin-month.component';
 
 @NgModule({
   declarations: [
@@ -27,8 +27,8 @@ import { LoginPopupComponent } from './components/vay-ngan-hang-header/login-pop
     VayNganHangFooterComponent,
     TrangChuComponent,
     DanhMucDetailComponent,
-    TestLoginComponent,
-    LoginPopupComponent
+    LoginPopupComponent,
+    PinMonthComponent
   ],
   imports: [
     CommonModule,

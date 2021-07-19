@@ -11,6 +11,7 @@ export class DanhMucDetailComponent implements OnInit {
   baiVietKV1: any = [];
   baiVietKV2: any = [];
   baiVietKV3: any = [];
+  listBaiVietDanhMuc: any = [];
   constructor(private apiService: ApiService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
@@ -18,6 +19,7 @@ export class DanhMucDetailComponent implements OnInit {
     this.getBaiVIetKV1(danhMucId);
     this.getBaiVIetKV2(danhMucId);
     this.getBaiVIetKV3(danhMucId);
+    this.getListBaiVietDanhMuc(danhMucId);
   }
 
   async getBaiVIetKV1(danhMucId) {
@@ -34,6 +36,11 @@ export class DanhMucDetailComponent implements OnInit {
   async getBaiVIetKV3(danhMucId) {
     await this.apiService.get(`DanhMucPortal/GetBaiVIetKV3/${danhMucId}`).toPromise().then((data) => {
       this.baiVietKV3 = data;
+    })
+  }
+  async getListBaiVietDanhMuc(danhMucId) {
+    await this.apiService.get(`DanhMucPortal/GetBaiListBaiViet/${danhMucId}`).toPromise().then((data) => {
+      this.listBaiVietDanhMuc = data;
     })
   }
   xemChiTiet(baiVIetId) {

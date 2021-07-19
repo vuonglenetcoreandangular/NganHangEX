@@ -14,3 +14,6 @@
 .login-fb, .login-gg, button{
     cursor: pointer;
 }
+form{
+    overflow-y: auto;
+}

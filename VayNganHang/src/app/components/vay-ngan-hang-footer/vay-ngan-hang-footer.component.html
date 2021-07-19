@@ -4,14 +4,8 @@
             <div class="col-12 col-md-8 col-lg-8">
                 <div class="footer_main_title py-3"> Category</div>
                 <ul class="footer_menu">
-                    <li><a href="#" class=""><i class="fa fa-angle-right"></i>&nbsp;&nbsp; Business</a></li>
-                    <li><a href="#" class=""><i class="fa fa-angle-right"></i>&nbsp;&nbsp; Entertainment</a></li>
-                    <li><a href="#" class=""><i class="fa fa-angle-right"></i>&nbsp;&nbsp; Environment</a></li>
-                    <li><a href="#" class=""><i class="fa fa-angle-right"></i>&nbsp;&nbsp; Health</a></li>
-                    <li><a href="#" class=""><i class="fa fa-angle-right"></i>&nbsp;&nbsp; Life style</a></li>
-                    <li><a href="#" class=""><i class="fa fa-angle-right"></i>&nbsp;&nbsp; Politics</a></li>
-                    <li><a href="#" class=""><i class="fa fa-angle-right"></i>&nbsp;&nbsp; Technology</a></li>
-                    <li><a href="#" class=""><i class="fa fa-angle-right"></i>&nbsp;&nbsp; World</a></li>
+                    <li *ngFor="let item of danhMucMeNus"><a href="#" class=""><i class="fa fa-angle-right"></i>&nbsp;&nbsp; {{item.TenDanhMuc}}</a></li>
+           
                 </ul>
             </div>
 

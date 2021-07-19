@@ -28,10 +28,6 @@ export class VayNganHangHeaderComponent implements OnInit {
       this.loggedIn = (user != null);
 
 
-      console.log('x', this.user)
-      console.log('y', this.loggedIn)
-
-
     });
 
   }
