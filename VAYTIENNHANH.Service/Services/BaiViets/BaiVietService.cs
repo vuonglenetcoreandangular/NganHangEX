@@ -176,7 +176,7 @@ namespace VAYTIENNHANH.Service.Services.BaiViets
             return query;
         }
 
-        //portal phận dưới các mục khu vực
+        //portal phận dưới các mục khu vực -nho em nhi
         public async Task<List<BaiVietGridPortal>> GetBaiListBaiViet(long? danhMucId)
         {
             var data = _repository.TableNoTracking.Where(x => x.Deleted != true);
