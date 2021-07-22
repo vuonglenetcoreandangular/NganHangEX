@@ -1,7 +1,7 @@
-import { Component, ElementRef, HostListener, OnInit, Renderer2, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit, Renderer2, ViewChild, ViewEncapsulation } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FacebookLoginProvider, GoogleLoginProvider, SocialAuthService, SocialUser } from 'angularx-social-login';
 import { ApiService } from 'src/app/services/api.service';
 import { LoginPopupComponent } from './login-popup/login-popup.component';
@@ -9,7 +9,8 @@ import { LoginPopupComponent } from './login-popup/login-popup.component';
 @Component({
   selector: 'app-vay-ngan-hang-header',
   templateUrl: './vay-ngan-hang-header.component.html',
-  styleUrls: ['./vay-ngan-hang-header.component.css']
+  styleUrls: ['./vay-ngan-hang-header.component.css'],
+  // encapsulation: ViewEncapsulation.None
 })
 export class VayNganHangHeaderComponent implements OnInit {
   danhMucMeNus: any = [];
@@ -17,19 +18,22 @@ export class VayNganHangHeaderComponent implements OnInit {
   loggedIn: boolean;
   invalidLogin: boolean;
   fiexd: boolean;
+  navActive: number = 0;
   // ngForm: any;
   @ViewChild('headerDiv') myDiv: HTMLElement;
-  constructor(private renderer: Renderer2, private dialog: MatDialog, private apiService: ApiService, private router: Router, private authService: SocialAuthService) { }
+  constructor(private route: ActivatedRoute,
+    private renderer: Renderer2, private dialog: MatDialog, private apiService: ApiService, private router: Router, private authService: SocialAuthService) { }
 
   ngOnInit(): void {
     this.getDanhMucMenu();
     this.authService.authState.subscribe((user) => {
       this.user = user;
       this.loggedIn = (user != null);
-
-
     });
-
+    
+    let danhMucId = this.route.snapshot.params['id'];
+    this.navActive = danhMucId;
+   // alert(danhMucId)
   }
   @HostListener('window:scroll', ['$event']) onScrollEvent($event) {
     console.log(window.scrollY)
@@ -46,6 +50,7 @@ export class VayNganHangHeaderComponent implements OnInit {
     })
   }
   onlick(idDanhMuc) {
+    this.navActive = idDanhMuc;
     this.router.navigateByUrl('/', { skipLocationChange: true }).then(() =>
       this.router.navigate([`danh-muc/${idDanhMuc}`]));
   }

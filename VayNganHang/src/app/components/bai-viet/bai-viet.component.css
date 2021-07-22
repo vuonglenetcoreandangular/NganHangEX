@@ -86,4 +86,8 @@
     .diem-nv{
         margin-top: 10px;
     }
+    .pad-content-left{
+        border-right:  none !important;
+        overflow-x: auto;
+    }
 }

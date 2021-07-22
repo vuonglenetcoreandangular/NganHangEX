@@ -93,7 +93,7 @@ a:hover {
 }
 
 .navbar-light .navbar-nav .nav-link {
-	color: #222 !important;
+	color: #222;
 	padding-top: 12px !important;
 	padding-bottom: 15px !important;
 	padding-left: 20px !important;

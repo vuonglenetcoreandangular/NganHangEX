@@ -16,6 +16,7 @@ ul > li > a{
     margin-right: 1px !important;
 }
 
+
 ul > li > a:hover{
     color: aquamarine !important;
 }
@@ -48,7 +49,9 @@ ul > li > a:hover{
     border-bottom: solid 0.5px rgb(194, 191, 191);
     z-index: 99;
 }
-
+.btn-navbar-show{
+    display: none !important;
+}
 @media screen and (max-width: 600px) {
 	ul li{
         max-height: 35px;
